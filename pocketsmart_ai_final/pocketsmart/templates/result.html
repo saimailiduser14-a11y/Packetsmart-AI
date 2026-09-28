@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>{{ p.title }}</h1>
+<p class="lead">{{ r.summary }}</p>
+{% if r.source == "fallback" %}<p class="note">Gemini could not answer this time, so this is a standard budget split. Check your API key or try again.
+{% if r.error %}<br><small>Reason: {{ r.error }}</small>{% endif %}</p>{% endif %}
+<div class="meter">
+  <div class="bar"><i style="width:{{ r.pct }}%" class="{{ 'over' if r.total > r.budget }}"></i></div>
+  <p><b>{{ r.total|inr }}</b> planned of {{ r.budget|inr }}.
+  {% if r.remaining >= 0 %}{{ r.remaining|inr }} left.{% else %}{{ (-r.remaining)|inr }} over budget.{% endif %}</p>
+</div>
+<ul class="items">
+  {% for i in r["items"] %}
+  <li>
+    <div><h3>{{ i.name }}</h3><p>{{ i.reason }}</p><small>{{ i.category }} on {{ i.platform }}</small></div>
+    <div class="buy"><b>{{ i.price|inr }}</b><a href="{{ i.link }}" target="_blank" rel="noopener">View on {{ i.platform }}</a></div>
+  </li>
+  {% endfor %}
+</ul>
+{% if r.tips %}<h2>Tips</h2><ul>{% for t in r.tips %}<li>{{ t }}</li>{% endfor %}</ul>{% endif %}
+<p><a href="/{{ kind }}-planner">Plan again</a> or see your <a href="/history">history</a>.</p>
+{% endblock %}

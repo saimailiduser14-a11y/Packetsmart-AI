@@ -1,0 +1,36 @@
+:root{--bg:#F2F5F1;--ink:#14231E;--teal:#0E6B5C;--gold:#F2B233;--line:#D5DED7;--muted:#5B6D65;--err:#B3261E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "DM Sans",system-ui,sans-serif}
+h1,h2,h3,.brand{font-family:"Bricolage Grotesque",Georgia,serif;line-height:1.15;margin:0 0 .5rem}
+h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800}
+a{color:var(--teal)}
+.top{display:flex;flex-wrap:wrap;gap:.75rem 2rem;justify-content:space-between;align-items:center;padding:1rem clamp(1rem,4vw,3rem);border-bottom:1px solid var(--line)}
+.brand{font-size:1.4rem;font-weight:800;text-decoration:none;color:var(--ink)}
+.brand span{background:var(--gold);padding:0 .35rem;margin-left:.25rem;border-radius:4px}
+nav a{margin-left:1.25rem;text-decoration:none;font-weight:500}
+main{max-width:860px;margin:0 auto;padding:2rem 1rem 4rem}
+label{display:block;font-weight:500;margin-bottom:1rem}
+input,select{display:block;width:100%;margin-top:.3rem;padding:.7rem .8rem;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+button{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:.8rem 1.4rem;font:inherit;font-weight:700;cursor:pointer}
+button:hover{background:#0A5548}
+.auth{max-width:380px;margin:3rem auto}
+.lead{font-size:1.1rem;color:var(--muted)}
+.err{color:var(--err);font-weight:500}.ok{color:var(--teal);font-weight:500}
+.note{background:#FFF4D6;padding:.7rem 1rem;border-radius:8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin:1.5rem 0 2.5rem}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.25rem;text-decoration:none;color:inherit}
+.card:hover{border-color:var(--teal)}
+.card small,.items small,.empty{color:var(--muted)}
+.planner{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:0 1.25rem}
+.planner button{grid-column:1/-1}
+.meter{margin:1.5rem 0}
+.bar{height:22px;background:#E1E8E3;border-radius:11px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--gold)}
+.bar i.over{background:var(--err)}
+.items,.rows{list-style:none;padding:0;margin:0}
+.items li{display:flex;justify-content:space-between;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+.items h3{font-size:1.1rem}.items p{margin:.2rem 0}
+.buy{text-align:right;white-space:nowrap}.buy b{display:block;font-size:1.2rem}
+.rows a{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+@media(max-width:600px){.planner{grid-template-columns:1fr}.items li{flex-direction:column}.buy{text-align:left}}

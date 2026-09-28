@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="auth">
+  <h1>{{ "Create your account" if mode == "register" else "Welcome back" }}</h1>
+  {% if error %}<p class="err">{{ error }}</p>{% endif %}
+  {% if request.query_params.get("registered") %}<p class="ok">Account created. Log in to start planning.</p>{% endif %}
+  <form method="post">
+    <label>Username<input name="username" required minlength="3" autofocus></label>
+    <label>Password<input type="password" name="password" required minlength="6"></label>
+    <button>{{ "Create account" if mode == "register" else "Log in" }}</button>
+  </form>
+  <p>{% if mode == "register" %}Already registered? <a href="/login">Log in</a>{% else %}New here? <a href="/register">Create an account</a>{% endif %}</p>
+</section>
+{% endblock %}

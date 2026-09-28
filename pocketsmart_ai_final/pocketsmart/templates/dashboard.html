@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>Hi {{ user.username }}, what are we budgeting today?</h1>
+<div class="cards">
+  {% for k, p in planners.items() %}
+  <a class="card" href="/{{ k }}-planner"><h2>{{ p.title }}</h2><p>{{ p.blurb }}</p><small>Shops on {{ p.platforms|join(", ") }}</small></a>
+  {% endfor %}
+</div>
+<h2>Recent plans</h2>
+{% if recent %}
+<ul class="rows">{% for h in recent %}
+  <li><a href="/recommendations-details/{{ h.id }}"><b>{{ h.kind|title }} plan</b><span>{{ h.budget|inr }}</span><time>{{ h.created }}</time></a></li>
+{% endfor %}</ul>
+{% else %}<p class="empty">No plans yet. Pick a planner above to create your first one.</p>{% endif %}
+{% endblock %}

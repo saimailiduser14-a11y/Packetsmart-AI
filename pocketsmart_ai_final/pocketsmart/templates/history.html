@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>Your past plans</h1>
+{% if items %}
+<ul class="rows">{% for h in items %}
+  <li><a href="/recommendations-details/{{ h.id }}"><b>{{ h.kind|title }} plan</b><span>{{ h.budget|inr }}</span><time>{{ h.created }}</time></a></li>
+{% endfor %}</ul>
+{% else %}<p class="empty">Nothing saved yet. Create a plan and it will show up here.</p>{% endif %}
+{% endblock %}

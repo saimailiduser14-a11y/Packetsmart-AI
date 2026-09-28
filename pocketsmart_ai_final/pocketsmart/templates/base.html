@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}PocketSmart AI{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/dashboard">PocketSmart<span>AI</span></a>
+  {% if user %}<nav>
+    <a href="/home-planner">Home</a><a href="/party-planner">Party</a><a href="/jewelry-planner">Jewelry</a>
+    <a href="/history">History</a><a href="/logout">Log out ({{ user.username }})</a>
+  </nav>{% endif %}
+</header>
+<main>{% block body %}{% endblock %}</main>
+</body>
+</html>

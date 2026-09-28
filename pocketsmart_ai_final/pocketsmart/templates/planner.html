@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>{{ p.title }}</h1>
+<p class="lead">{{ p.blurb }}</p>
+{% if error %}<p class="err">{{ error }}</p>{% endif %}
+<form class="planner" method="post" action="/generate-{{ kind }}" enctype="multipart/form-data">
+  {% for f in p.fields %}
+  <label>{{ f.label }}
+    {% if f.type == "select" %}
+      <select name="{{ f.name }}">{% for o in f.options %}<option {{ "selected" if values and values.get(f.name) == o }}>{{ o }}</option>{% endfor %}</select>
+    {% elif f.type == "file" %}
+      <input type="file" name="{{ f.name }}" accept="image/*">
+    {% else %}
+      <input name="{{ f.name }}" type="{{ f.type }}" {% if f.type == "number" %}min="0" step="any"{% endif %}
+             value="{{ (values or {}).get(f.name, f.default) }}" {{ "required" if f.name == "budget" }}>
+    {% endif %}
+  </label>
+  {% endfor %}
+  <button>Get recommendations</button>
+</form>
+{% endblock %}
